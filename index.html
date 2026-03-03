@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Inside Track — Follow the Smart Money</title>
+<meta name="description" content="Real-time insider purchases and Congressional trades — before everyone else. Track SEC filings and Congressional stock trades with smart alerts.">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#0a0a0a;--card:#111;--border:#1a1a1a;--green:#00ff88;--green-dim:#00cc6a;--white:#fff;--gray:#999;--light:#ccc}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;background:var(--bg);color:var(--white);line-height:1.6;-webkit-font-smoothing:antialiased}
+a{color:var(--green);text-decoration:none}
+a:hover{text-decoration:underline}
+.container{max-width:1100px;margin:0 auto;padding:0 24px}
+
+/* Nav */
+nav{padding:20px 0;border-bottom:1px solid var(--border)}
+nav .container{display:flex;justify-content:space-between;align-items:center}
+.logo{font-size:1.25rem;font-weight:700;letter-spacing:-0.5px}
+.logo span{color:var(--green)}
+nav a.cta-sm{background:var(--green);color:#000;padding:8px 20px;border-radius:8px;font-weight:600;font-size:0.9rem;transition:background .2s}
+nav a.cta-sm:hover{background:var(--green-dim);text-decoration:none}
+
+/* Hero */
+.hero{padding:80px 0 60px;text-align:center}
+.hero h1{font-size:clamp(2.2rem,5vw,3.5rem);font-weight:800;letter-spacing:-1px;line-height:1.15;margin-bottom:20px}
+.hero h1 span{color:var(--green)}
+.hero p{font-size:1.15rem;color:var(--light);max-width:560px;margin:0 auto 40px}
+.store-buttons{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;margin-bottom:48px}
+.store-btn{display:inline-flex;align-items:center;gap:10px;background:#1a1a1a;border:1px solid #333;padding:12px 28px;border-radius:12px;color:var(--white);font-size:0.95rem;font-weight:600;transition:border-color .2s}
+.store-btn:hover{border-color:var(--green);text-decoration:none}
+.store-btn .icon{font-size:1.4rem}
+.store-btn small{display:block;font-size:0.7rem;font-weight:400;color:var(--gray);text-align:left}
+.phone-mockup{max-width:300px;margin:0 auto;background:#111;border:2px solid #222;border-radius:32px;padding:16px;aspect-ratio:9/18;display:flex;align-items:center;justify-content:center;color:var(--gray);font-size:0.85rem}
+
+/* Features */
+.features{padding:80px 0}
+.section-label{text-transform:uppercase;font-size:0.8rem;letter-spacing:2px;color:var(--green);text-align:center;margin-bottom:12px;font-weight:600}
+.section-title{font-size:clamp(1.6rem,3vw,2.2rem);text-align:center;font-weight:700;margin-bottom:48px;letter-spacing:-0.5px}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px}
+.card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:32px 28px}
+.card .emoji{font-size:2rem;margin-bottom:16px}
+.card h3{font-size:1.15rem;font-weight:700;margin-bottom:10px}
+.card p{color:var(--gray);font-size:0.95rem;line-height:1.5}
+
+/* How It Works */
+.how{padding:80px 0;border-top:1px solid var(--border)}
+.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:32px;counter-reset:step}
+.step{text-align:center;counter-increment:step}
+.step::before{content:counter(step);display:inline-flex;align-items:center;justify-content:center;width:48px;height:48px;border-radius:50%;background:var(--green);color:#000;font-size:1.2rem;font-weight:800;margin-bottom:16px}
+.step h3{font-size:1.05rem;font-weight:700;margin-bottom:8px}
+.step p{color:var(--gray);font-size:0.9rem}
+
+/* Pricing */
+.pricing{padding:80px 0;border-top:1px solid var(--border)}
+.plans{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px;max-width:700px;margin:0 auto}
+.plan{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:36px 28px;position:relative}
+.plan.pro{border-color:var(--green)}
+.plan .badge{position:absolute;top:-12px;left:50%;transform:translateX(-50%);background:var(--green);color:#000;font-size:0.75rem;font-weight:700;padding:4px 16px;border-radius:20px;text-transform:uppercase;letter-spacing:1px}
+.plan h3{font-size:1.3rem;font-weight:700;margin-bottom:4px}
+.plan .price{font-size:2rem;font-weight:800;margin:12px 0 4px}
+.plan .price span{font-size:0.9rem;font-weight:400;color:var(--gray)}
+.plan .period{font-size:0.85rem;color:var(--gray);margin-bottom:24px}
+.plan ul{list-style:none;margin-bottom:28px}
+.plan ul li{padding:6px 0;font-size:0.9rem;color:var(--light)}
+.plan ul li::before{content:"✓";color:var(--green);font-weight:700;margin-right:8px}
+.plan-btn{display:block;text-align:center;padding:14px;border-radius:10px;font-weight:700;font-size:0.95rem;transition:all .2s}
+.plan-btn.outline{border:1px solid #333;color:var(--white)}
+.plan-btn.outline:hover{border-color:var(--green);text-decoration:none}
+.plan-btn.fill{background:var(--green);color:#000}
+.plan-btn.fill:hover{background:var(--green-dim);text-decoration:none}
+
+/* Footer */
+footer{border-top:1px solid var(--border);padding:40px 0;text-align:center}
+footer p{color:var(--gray);font-size:0.85rem;margin-bottom:8px}
+footer .links{display:flex;gap:24px;justify-content:center;flex-wrap:wrap}
+footer .links a{color:var(--gray);font-size:0.85rem}
+footer .links a:hover{color:var(--green)}
+</style>
+</head>
+<body>
+
+<nav>
+<div class="container">
+<div class="logo">The Inside <span>Track</span></div>
+<a href="#pricing" class="cta-sm">Get the App</a>
+</div>
+</nav>
+
+<section class="hero">
+<div class="container">
+<h1>Follow the <span>Smart Money</span></h1>
+<p>Real-time insider purchases and Congressional trades — before everyone else.</p>
+<div class="store-buttons">
+<a href="#" class="store-btn">
+<span class="icon">🍎</span>
+<div><small>Download on the</small>App Store</div>
+</a>
+<a href="#" class="store-btn">
+<span class="icon">▶️</span>
+<div><small>Get it on</small>Google Play</div>
+</a>
+</div>
+<div class="phone-mockup">📱 App Preview Coming Soon</div>
+</div>
+</section>
+
+<section class="features" id="features">
+<div class="container">
+<div class="section-label">Features</div>
+<h2 class="section-title">Everything you need to track the smart money</h2>
+<div class="cards">
+<div class="card">
+<div class="emoji">📊</div>
+<h3>Insider Signals</h3>
+<p>CEO, CFO, and director purchases the moment SEC filings hit. Know what insiders are buying before the market reacts.</p>
+</div>
+<div class="card">
+<div class="emoji">🏛️</div>
+<h3>Congress Tracker</h3>
+<p>See what Senators and Representatives are trading. Real-time congressional stock disclosure tracking.</p>
+</div>
+<div class="card">
+<div class="emoji">🔔</div>
+<h3>Smart Alerts</h3>
+<p>Push notifications when signals match your filters. Never miss a trade that matters to you.</p>
+</div>
+</div>
+</div>
+</section>
+
+<section class="how" id="how">
+<div class="container">
+<div class="section-label">How It Works</div>
+<h2 class="section-title">Start tracking in 3 steps</h2>
+<div class="steps">
+<div class="step">
+<h3>Set Your Filters</h3>
+<p>Pick tickers, sectors, or insiders you care about. Customize your signal feed.</p>
+</div>
+<div class="step">
+<h3>Get Real-Time Alerts</h3>
+<p>Instant push notifications when new insider or congressional trades match your criteria.</p>
+</div>
+<div class="step">
+<h3>Make Informed Decisions</h3>
+<p>Use smart money data to inform your research. AI insights highlight what matters most.</p>
+</div>
+</div>
+</div>
+</section>
+
+<section class="pricing" id="pricing">
+<div class="container">
+<div class="section-label">Pricing</div>
+<h2 class="section-title">Simple, transparent pricing</h2>
+<div class="plans">
+<div class="plan">
+<h3>Free</h3>
+<div class="price">$0</div>
+<div class="period">forever</div>
+<ul>
+<li>3 signals per day</li>
+<li>24-hour data delay</li>
+<li>Basic watchlist</li>
+<li>Insider + Congress feeds</li>
+</ul>
+<a href="#" class="plan-btn outline">Download Free</a>
+</div>
+<div class="plan pro">
+<div class="badge">Most Popular</div>
+<h3>Pro</h3>
+<div class="price">$2.99 <span>/ mo</span></div>
+<div class="period">cancel anytime</div>
+<ul>
+<li>Unlimited signals</li>
+<li>Real-time data</li>
+<li>AI-powered insights</li>
+<li>Push notifications</li>
+<li>Advanced filters</li>
+</ul>
+<a href="#" class="plan-btn fill">Get Pro</a>
+</div>
+</div>
+</div>
+</section>
+
+<footer>
+<div class="container">
+<p>&copy; 2026 Mirzayan LLC. All rights reserved.</p>
+<div class="links">
+<a href="privacy.html">Privacy Policy</a>
+<a href="terms.html">Terms of Service</a>
+<a href="mailto:andre@mirzayanconsulting.com">Contact</a>
+</div>
+</div>
+</footer>
+
+</body>
+</html>
