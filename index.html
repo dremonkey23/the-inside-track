@@ -7,7 +7,7 @@
 <meta name="description" content="Real-time insider purchases and Congressional trades — before everyone else. Track SEC filings and Congressional stock trades with smart alerts.">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-:root{--bg:#0a0a0a;--card:#111;--border:#1a1a1a;--green:#00ff88;--green-dim:#00cc6a;--white:#fff;--gray:#999;--light:#ccc}
+:root{--bg:#0a0a0a;--card:#111;--border:#1a1a1a;--green:#00ff88;--green-dim:#00cc6a;--white:#fff;--gray:#999;--light:#ccc;--red:#ff4444}
 body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;background:var(--bg);color:var(--white);line-height:1.6;-webkit-font-smoothing:antialiased}
 a{color:var(--green);text-decoration:none}
 a:hover{text-decoration:underline}
@@ -31,7 +31,34 @@ nav a.cta-sm:hover{background:var(--green-dim);text-decoration:none}
 .store-btn:hover{border-color:var(--green);text-decoration:none}
 .store-btn .icon{font-size:1.4rem}
 .store-btn small{display:block;font-size:0.7rem;font-weight:400;color:var(--gray);text-align:left}
-.phone-mockup{max-width:300px;margin:0 auto;background:#111;border:2px solid #222;border-radius:32px;padding:16px;aspect-ratio:9/18;display:flex;align-items:center;justify-content:center;color:var(--gray);font-size:0.85rem}
+
+/* Phone Mockup */
+.phone-mockup{max-width:300px;margin:0 auto;background:#111;border:2px solid #222;border-radius:32px;padding:12px;overflow:hidden;position:relative}
+.phone-notch{width:120px;height:24px;background:#0a0a0a;border-radius:0 0 14px 14px;margin:0 auto 8px;position:relative}
+.phone-notch::after{content:'';width:8px;height:8px;background:#222;border-radius:50%;position:absolute;right:20px;top:8px}
+.phone-screen{background:#0a0a0a;border-radius:20px;padding:12px;min-height:460px}
+.phone-header{padding:4px 0 10px;border-bottom:1px solid #1e1e1e;margin-bottom:10px}
+.phone-header-title{font-size:14px;font-weight:800;color:#fff}
+.phone-header-sub{font-size:9px;color:#888;margin-top:2px}
+
+/* Mock signal cards inside phone */
+.mock-card{background:#141414;border-radius:8px;padding:10px;margin-bottom:6px;border:1px solid #1e1e1e;border-left:3px solid var(--green)}
+.mock-card.sell{border-left-color:var(--red)}
+.mock-card-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:3px}
+.mock-ticker{font-size:13px;font-weight:800;color:var(--green)}
+.mock-card.sell .mock-ticker{color:var(--red)}
+.mock-badge{font-size:7px;font-weight:800;padding:1px 4px;border-radius:3px;border:1px solid;display:inline-block;margin-left:5px}
+.mock-badge.buy{color:var(--green);border-color:var(--green);background:rgba(0,255,136,0.1)}
+.mock-badge.sell{color:var(--red);border-color:var(--red);background:rgba(255,68,68,0.1)}
+.mock-conf{font-size:8px;color:#888;margin-left:4px}
+.mock-date{font-size:8px;color:#555}
+.mock-company{font-size:8px;color:#888;margin-bottom:4px}
+.mock-bottom{display:flex;justify-content:space-between;align-items:flex-end}
+.mock-name{font-size:10px;font-weight:600;color:#fff}
+.mock-title{font-size:7px;color:#555;margin-top:1px}
+.mock-value{font-size:12px;font-weight:700;color:#fff;text-align:right}
+.mock-shares{font-size:7px;color:#555;text-align:right;margin-top:1px}
+.phone-home-bar{width:100px;height:4px;background:#333;border-radius:2px;margin:8px auto 0}
 
 /* Features */
 .features{padding:80px 0}
@@ -101,7 +128,79 @@ footer .links a:hover{color:var(--green)}
 <div><small>Get it on</small>Google Play</div>
 </a>
 </div>
-<div class="phone-mockup">📱 App Preview Coming Soon</div>
+
+<!-- Phone mockup with styled signal feed -->
+<div class="phone-mockup">
+  <div class="phone-notch"></div>
+  <div class="phone-screen">
+    <div class="phone-header">
+      <div class="phone-header-title">🔴 The Inside Track</div>
+      <div class="phone-header-sub">25 signals today</div>
+    </div>
+
+    <div class="mock-card">
+      <div class="mock-card-top">
+        <div><span class="mock-ticker">NVDA</span><span class="mock-badge buy">BUY</span><span class="mock-conf">🔴 High</span></div>
+        <span class="mock-date">Feb 28</span>
+      </div>
+      <div class="mock-company">NVIDIA Corporation</div>
+      <div class="mock-bottom">
+        <div><div class="mock-name">Jensen Huang</div><div class="mock-title">CEO</div></div>
+        <div><div class="mock-value">$7.1M</div><div class="mock-shares">50,000 shares</div></div>
+      </div>
+    </div>
+
+    <div class="mock-card">
+      <div class="mock-card-top">
+        <div><span class="mock-ticker">AAPL</span><span class="mock-badge buy">BUY</span><span class="mock-conf">🔴 High</span></div>
+        <span class="mock-date">Feb 27</span>
+      </div>
+      <div class="mock-company">Apple Inc.</div>
+      <div class="mock-bottom">
+        <div><div class="mock-name">Tim Cook</div><div class="mock-title">CEO</div></div>
+        <div><div class="mock-value">$23.8M</div><div class="mock-shares">100,000 shares</div></div>
+      </div>
+    </div>
+
+    <div class="mock-card sell">
+      <div class="mock-card-top">
+        <div><span class="mock-ticker">ORCL</span><span class="mock-badge sell">SELL</span><span class="mock-conf">🔴 High</span></div>
+        <span class="mock-date">Feb 28</span>
+      </div>
+      <div class="mock-company">Oracle Corporation</div>
+      <div class="mock-bottom">
+        <div><div class="mock-name">Safra Catz</div><div class="mock-title">CEO</div></div>
+        <div><div class="mock-value">$21.4M</div><div class="mock-shares">120,000 shares</div></div>
+      </div>
+    </div>
+
+    <div class="mock-card">
+      <div class="mock-card-top">
+        <div><span class="mock-ticker">TSLA</span><span class="mock-badge buy">BUY</span><span class="mock-conf">🔴 High</span></div>
+        <span class="mock-date">Feb 25</span>
+      </div>
+      <div class="mock-company">Tesla, Inc.</div>
+      <div class="mock-bottom">
+        <div><div class="mock-name">Robyn Denholm</div><div class="mock-title">Chair</div></div>
+        <div><div class="mock-value">$4.7M</div><div class="mock-shares">15,000 shares</div></div>
+      </div>
+    </div>
+
+    <div class="mock-card">
+      <div class="mock-card-top">
+        <div><span class="mock-ticker">MSFT</span><span class="mock-badge buy">BUY</span><span class="mock-conf">🟡 Med</span></div>
+        <span class="mock-date">Feb 24</span>
+      </div>
+      <div class="mock-company">Microsoft Corporation</div>
+      <div class="mock-bottom">
+        <div><div class="mock-name">Satya Nadella</div><div class="mock-title">CEO</div></div>
+        <div><div class="mock-value">$12.8M</div><div class="mock-shares">30,000 shares</div></div>
+      </div>
+    </div>
+  </div>
+  <div class="phone-home-bar"></div>
+</div>
+
 </div>
 </section>
 
@@ -191,7 +290,7 @@ footer .links a:hover{color:var(--green)}
 <div class="links">
 <a href="privacy.html">Privacy Policy</a>
 <a href="terms.html">Terms of Service</a>
-<a href="mailto:support@theinsidetrack.xyz">Contact</a>
+<a href="mailto:andre@mirzayanconsulting.com">Contact</a>
 </div>
 </div>
 </footer>
